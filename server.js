@@ -28,4 +28,12 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
+app.post("/", (req, res) => {
+  res.json({
+    text: "A cardiologist is a medical doctor who specializes in diagnosing and treating diseases of the heart and blood vessels, focusing on prevention, management, and long-term heart health as a Cardiologist",
+    audio_url : null
+  });
+});
+
+
 app.listen(port, () => console.log("Server started", port));
