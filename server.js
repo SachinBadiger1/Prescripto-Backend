@@ -6,6 +6,10 @@ import connectCloudinary from "./config/cloudinary.js";
 import adminRouter from "./routes/adminRoute.js";
 import doctorRouter from "./routes/doctorRoute.js";
 import userRouter from "./routes/userRoute.js";
+import multer from "multer";
+
+const upload = multer({ storage: multer.memoryStorage() });
+
 
 // app config
 const app = express();
@@ -28,10 +32,24 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
-app.post("/", (req, res) => {
+app.post("/", upload.single("audio"), (req, res) => {
+  const audio = req.file;
+
+  const text =
+    "A cardiologist is a medical doctor who specializes in diagnosing and treating diseases of the heart and blood vessels, focusing on prevention, management, and long-term heart health as a Cardiologist";
+
+  if (!audioFile) {
+    return res.json({
+      text,
+      audio: null,
+      mimeType: null
+    });
+  }
+
   res.json({
-    text: "A cardiologist is a medical doctor who specializes in diagnosing and treating diseases of the heart and blood vessels, focusing on prevention, management, and long-term heart health as a Cardiologist",
-    audio_url : null
+    text,
+    audio: audio.buffer.toString("base64"),
+    mimeType: audio.mimetype
   });
 });
 
