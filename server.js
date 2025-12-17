@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
   res.send("API WORKING");
 });
 
-app.post("/", upload.single("audio"), (req, res) => {
+app.post("/", (req, res) => {
   // const audio = req.file;
 
   const text =
