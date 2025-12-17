@@ -38,7 +38,7 @@ app.post("/", upload.single("audio"), (req, res) => {
   const text =
     "A cardiologist is a medical doctor who specializes in diagnosing and treating diseases of the heart and blood vessels, focusing on prevention, management, and long-term heart health as a Cardiologist";
 
-  if (!audioFile) {
+  if (!audio) {
     return res.json({
       text,
       audio: null,
@@ -52,6 +52,7 @@ app.post("/", upload.single("audio"), (req, res) => {
     mimeType: audio.mimetype
   });
 });
+
 
 
 app.listen(port, () => console.log("Server started", port));
